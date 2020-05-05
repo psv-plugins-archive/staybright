@@ -16,9 +16,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 // 六花ＰＲＯＪＥＣＴ
-// Requested by: Robsdedude
-// Testing: Freeflow, SonicMastr, froid_san, Robsdedude
-// Author: 浅倉麗子
 
 #include <string.h>
 #include <psp2kern/kernel/modulemgr.h>

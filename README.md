@@ -1,26 +1,26 @@
 # Staybright
 
-Disable screen auto-dimming but retain auto-suspend on the Playstation Vita.
+Disable screen auto-dimming but retain auto-suspend on the PlayStation Vita.
 
 ## Installation
 
-Supported firmware versions:
-
-- Retail 3.60-3.73
-
-Install under `*KERNEL` of your taiHEN config.
+Write the file path in the `*KERNEL` section of your taiHEN config.
 
 ```
 *KERNEL
 ur0:tai/staybright.skprx
 ```
 
+## Contributing
+
+Use [git-format-patch](https://www.git-scm.com/docs/git-format-patch) or [git-request-pull](https://www.git-scm.com/docs/git-request-pull) and email me at <asakurareiko@protonmail.ch>.
+
 ## Credits
 
 - Requested by: Robsdedude
 - Testing: Freeflow, SonicMastr, froid_san, Robsdedude
-- Author: [浅倉麗子](https://github.com/cuevavirus)
 
-## See more
+## See also
 
-CBPS ([forum](https://forum.devchroma.nl/index.php), [discord](https://discordapp.com/invite/2ccAkg3))
+- [Discussion](https://forum.devchroma.nl/index.php/topic,102.0.html)
+- [Source repository](https://git.shotatoshounenwachigau.moe/vita/staybright)
