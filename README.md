@@ -8,7 +8,21 @@ Write the file path in the `*KERNEL` section of your taiHEN config.
 
 ```
 *KERNEL
-ur0:tai/staybright.skprx
+ur0:/tai/staybright.skprx
+```
+
+## Building
+
+Dependencies:
+
+- [DolceSDK](https://forum.devchroma.nl/index.php/topic,129.0.html)
+- [taiHEN](https://git.shotatoshounenwachigau.moe/vita/taihen)
+
+To build module:
+
+```sh
+cmake .
+make
 ```
 
 ## Contributing
