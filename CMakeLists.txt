@@ -37,10 +37,10 @@ add_link_options(
 
 set(ELF "staybright.elf")
 set(SELF "staybright.skprx")
-set(MODULE_INFO "exports.yml")
+set(MODULE_INFO "staybright.yml")
 
 add_executable("${ELF}"
-  main.c
+  staybright.c
 )
 
 target_link_libraries("${ELF}"
