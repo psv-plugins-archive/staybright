@@ -13,36 +13,42 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.13)
 
-if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
-  if(DEFINED ENV{DOLCESDK})
-    set(CMAKE_TOOLCHAIN_FILE "$ENV{DOLCESDK}/share/dolce.toolchain.cmake" CACHE PATH "toolchain file")
-  else()
-    message(FATAL_ERROR "Please define DOLCESDK to point to your SDK path!")
-  endif()
-endif()
+set(CMAKE_TOOLCHAIN_FILE "$ENV{DOLCESDK}/share/dolce.toolchain.cmake" CACHE PATH "DolceSDK toolchain file")
+set(DOLCESDK_CMAKE_FILE "$ENV{DOLCESDK}/share/dolce.cmake" CACHE PATH "DolceSDK CMake functions file")
+include("${DOLCESDK_CMAKE_FILE}" REQUIRED)
 
 project(staybright LANGUAGES C)
-include("$ENV{DOLCESDK}/share/dolce.cmake" REQUIRED)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -nostdlib -Wall -Wextra -O3 -std=c99")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -nostdlib")
+add_compile_options(
+  -Os -std=c99
+  -Wall -Wextra -Wdouble-promotion -Wshadow -Wundef
+  -fsingle-precision-constant -fno-common -flto
+  -ftree-vectorize -funsafe-math-optimizations
+)
 
-set(ELF "${PROJECT_NAME}.elf")
-set(SELF "${PROJECT_NAME}.skprx")
+add_link_options(
+  -nostdlib
+  --entry=module_start
+)
+
+# Build self
+
+set(ELF "staybright.elf")
+set(SELF "staybright.skprx")
+set(MODULE_INFO "exports.yml")
 
 add_executable("${ELF}"
   main.c
 )
 
 target_link_libraries("${ELF}"
-  ScePowerForDriver_stub
   taihenForKernel_stub
+  ScePowerForDriver_stub
 )
 
 dolce_create_self("${SELF}"
   "${ELF}"
-  CONFIG exports.yml
-  UNSAFE
+  CONFIG "${MODULE_INFO}"
 )
